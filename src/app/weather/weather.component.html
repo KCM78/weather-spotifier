@@ -1,0 +1,24 @@
+<div id="container">
+  <form (submit)="getWeather(cityValue, countryValue)">
+      <input [(ngModel)]="cityValue" type="text" name="city" placeholder="City..." />
+      <input [(ngModel)]="countryValue" type="text" name="country" placeholder="Country..." />
+      <button type="submit">Get Weather</button>
+  </form>
+  <div *ngIf="weather.city !== undefined" id="weather-results">
+    <ul>
+      <li>{{weather.temp}}C</li>
+      <li>{{weather.humidity}}%</li>
+      <li><img src="http://openweathermap.org/img/w/{{weather.icon}}.png" alt="{{weather.description}}"/></li>
+    </ul>
+  </div>
+</div>
+
+<div id="spotify-results-container">
+  <div *ngFor="let track of tracks" class="spotify-results">
+    <ul>
+      <li><a href="{{track.external_urls.spotify}}"><img src="{{track.album.images[2].url}}" /></a></li>
+      <li>{{track.artists[0].name | uppercase}}</li>
+      <li>{{track.album.name}}</li>
+    </ul>
+  </div>
+</div>
