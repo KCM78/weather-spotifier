@@ -60,6 +60,16 @@ button:hover {
     border: 3px solid #888;
 }
 
+.spotify-results a {
+    color: darkred;
+    text-decoration: none;
+}
+
+.spotify-results a:hover {
+    color: #eee;
+    text-decoration: underline;
+}
+
 .spotify-results:hover {
     background: #545454;
     color: #eee;

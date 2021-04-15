@@ -16,9 +16,9 @@
 <div id="spotify-results-container">
   <div *ngFor="let track of tracks" class="spotify-results">
     <ul>
-      <li><a href="{{track.external_urls.spotify}}"><img src="{{track.album.images[2].url}}" /></a></li>
+      <li><img src="{{track.album.images[2].url}}" /></li>
       <li>{{track.artists[0].name | uppercase}}</li>
-      <li>{{track.album.name}}</li>
+      <li><a href="{{track.external_urls.spotify}}">{{track.name}}</a> from {{track.album.name}}</li>
     </ul>
   </div>
 </div>

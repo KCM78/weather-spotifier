@@ -3,27 +3,27 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
-import { ApiService } from './services/weather.service';
-import { AppComponent } from './app.component';
-import { FeaturesService } from './services/features.service';
-import { SpotifyService } from './services/spotify.service';
-import { WeatherComponent } from './weather/weather.component';
+import ApiService from './services/weather.service';
+import AppComponent from './app.component';
+import FeaturesService from './services/features.service';
+import SpotifyService from './services/spotify.service';
+import WeatherComponent from './weather/weather.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeatherComponent
+    WeatherComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     ApiService,
     FeaturesService,
-    SpotifyService
+    SpotifyService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export default class AppModule { }
