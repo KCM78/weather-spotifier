@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -12,10 +12,7 @@ export default class SpotifyService {
   public getRecommendations(
     features: AudioFeatures,
     genres: string,
-    token: string,
-  ): Observable<SpotifyApi.RecommendationsObject> {
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`);
+  ): Observable<SpotifyApi.RecommendationsFromSeedsResponse> {
     const params = new HttpParams()
       .set('seed_genres', genres)
       .set('limit', '12')
@@ -24,6 +21,6 @@ export default class SpotifyService {
       .set('target_energy', String(features.maxEnergy))
       .set('max_tempo', String(features.maxTempo))
       .set('mode', String(features.mode));
-    return this.http.get<SpotifyApi.RecommendationsObject>('https://api.spotify.com/v1/recommendations/', { params, headers });
+    return this.http.get<SpotifyApi.RecommendationsFromSeedsResponse>('/api/getRecommendations', { params });
   }
 }
