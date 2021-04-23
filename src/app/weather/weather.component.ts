@@ -20,12 +20,6 @@ export default class WeatherComponent {
 
   public weather = new Weather();
 
-  public playlist: string;
-
-  public playlistSnapshotId: string;
-
-  public playlistUrl: string;
-
   constructor(
     private api: ApiService,
     private features: FeaturesService,
