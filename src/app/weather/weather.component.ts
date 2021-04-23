@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import ApiService from '../services/weather.service';
 import AudioFeatures from '../models/audiofeatures';
 import FeaturesService from '../services/features.service';
 import SpotifyService from '../services/spotify.service';
 import Weather from '../models/weather';
-import { TokenObject, getToken } from '../utils/getToken';
 
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.css'],
 })
-export default class WeatherComponent implements OnInit {
+export default class WeatherComponent {
   public cityValue: string;
 
   public countryValue: string;
@@ -21,17 +20,17 @@ export default class WeatherComponent implements OnInit {
 
   public weather = new Weather();
 
-  private token: TokenObject;
+  public playlist: string;
+
+  public playlistSnapshotId: string;
+
+  public playlistUrl: string;
 
   constructor(
     private api: ApiService,
     private features: FeaturesService,
     private spotify: SpotifyService,
   ) { }
-
-  ngOnInit(): void {
-    this.token = getToken();
-  }
 
   public getWeather(city: string, country: string): void {
     this.api.getWeatherData(city, country).subscribe((result) => {
@@ -47,16 +46,15 @@ export default class WeatherComponent implements OnInit {
         this.weather.weatherId = result.weather[0].id.toString();
       }
       const feat = this.features.convertWeatherToFeatures(this.weather);
-      this.getTracks(feat, this.token.access_token);
+      this.getTracks(feat);
     });
   }
 
-  private getTracks(features: AudioFeatures, token: string): void {
+  private getTracks(features: AudioFeatures): void {
     const genresRand = features.genreGroup.sort(() => 0.5 - Math.random());
     const genres = genresRand.slice(0, 5).join();
-    this.spotify.getRecommendations(features, genres, token).subscribe((data) => {
+    this.spotify.getRecommendations(features, genres).subscribe((data) => {
       this.tracks = data.tracks;
-      console.log(this.tracks);
     });
   }
 }

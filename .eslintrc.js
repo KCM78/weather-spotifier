@@ -23,6 +23,7 @@ module.exports = {
     ],
     'no-useless-constructor': 'off',
     'import/prefer-default-export': 'off',
+    'import/no-self-import': 'off',
   },
   overrides: [{
     files: ['*ts'],
