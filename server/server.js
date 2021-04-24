@@ -4,7 +4,7 @@ const passport = require('passport');
 const SpotifyStrategy = require('passport-spotify').Strategy;
 const SpotifyWebApi = require('spotify-web-api-node');
 const cors = require('cors');
-require('../passport');
+require('dotenv').config();
 
 const app = express();
 const spotifyApi = new SpotifyWebApi();
